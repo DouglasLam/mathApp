@@ -8,7 +8,7 @@ import com.ducktech.mathtrail.domain.StudentProfile
 /** Stores student profiles and the currently selected profile behind a replaceable boundary. */
 interface StudentProfileRepository {
     /** Returns the saved profiles, or an empty list when none have been created. */
-    fun getProfiles()
+    fun getProfiles(): List<StudentProfile>
 
     /** Replaces the locally saved profile list. */
     fun saveProfiles(profiles: List<StudentProfile>)
