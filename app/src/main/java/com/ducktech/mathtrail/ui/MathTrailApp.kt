@@ -61,7 +61,8 @@ fun MathTrailApp(context: Context) {
     var showProfiles by remember { mutableStateOf(activeId == null) }
     var creatingProfile by remember { mutableStateOf(false) }
 
-    if (showProfiles) {
+    val activeProfile = profiles.firstOrNull { it.id == activeId }
+    if (showProfiles || activeProfile == null) {
         ProfilePicker(
             profiles = profiles,
             activeId = activeId,
@@ -85,12 +86,7 @@ fun MathTrailApp(context: Context) {
             onDone = { showProfiles = false }
         )
     } else {
-        val profile = profiles.firstOrNull { it.id == activeId }
-        if (profile == null) {
-            showProfiles = true
-        } else {
-            HomeScreen(profile, onSwitchProfile = { showProfiles = true })
-        }
+        HomeScreen(activeProfile, onSwitchProfile = { showProfiles = true })
     }
 }
 
