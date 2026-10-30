@@ -50,6 +50,10 @@ private val Coral = Color(0xFFE7655B)
 private val SoftTeal = Color(0xFFE3F5F1)
 private val SoftCoral = Color(0xFFFFECE7)
 
+/**
+ * Owns profile selection state and routes between the profile picker and home screen.
+ * Profile data is loaded and saved through the repository so screens do not depend on storage.
+ */
 @Composable
 fun MathTrailApp(context: Context) {
     val repository = remember(context) { SharedPreferencesStudentProfileRepository(context) }
@@ -90,6 +94,7 @@ fun MathTrailApp(context: Context) {
     }
 }
 
+/** Lets a student choose an existing profile or create one on this device. */
 @Composable
 private fun ProfilePicker(
     profiles: List<StudentProfile>,
@@ -161,6 +166,7 @@ private fun ProfilePicker(
     }
 }
 
+/** Presents one profile as a selectable row and marks the active student. */
 @Composable
 private fun ProfileCard(profile: StudentProfile, active: Boolean, onClick: () -> Unit) {
     Card(
@@ -179,6 +185,7 @@ private fun ProfileCard(profile: StudentProfile, active: Boolean, onClick: () ->
     }
 }
 
+/** Shows the selected student and the current grade and practice entry points. */
 @Composable
 private fun HomeScreen(profile: StudentProfile, onSwitchProfile: () -> Unit) {
     var grade by remember { mutableIntStateOf(5) }
@@ -242,6 +249,7 @@ private fun HomeScreen(profile: StudentProfile, onSwitchProfile: () -> Unit) {
     }
 }
 
+/** Shared visual card for selecting a math operation. */
 @Composable
 private fun OperationCard(title: String, symbol: String, background: Color, accent: Color, onClick: () -> Unit) {
     Card(

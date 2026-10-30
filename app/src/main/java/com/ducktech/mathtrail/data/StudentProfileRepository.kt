@@ -5,13 +5,25 @@ import org.json.JSONArray
 import org.json.JSONObject
 import com.ducktech.mathtrail.domain.StudentProfile
 
+/** Stores student profiles and the currently selected profile behind a replaceable boundary. */
 interface StudentProfileRepository {
-    fun getProfiles(): List<StudentProfile>
+    /** Returns the saved profiles, or an empty list when none have been created. */
+    fun getProfiles()
+
+    /** Replaces the locally saved profile list. */
     fun saveProfiles(profiles: List<StudentProfile>)
+
+    /** Returns the saved active profile ID, if one has been selected. */
     fun getActiveProfileId(): String?
+
+    /** Persists which profile should be active when the app next opens. */
     fun setActiveProfileId(profileId: String)
 }
 
+/**
+ * Device-local profile storage. Keeping this implementation behind [StudentProfileRepository]
+ * allows the app to change storage later without changing profile rules or screen behavior.
+ */
 class SharedPreferencesStudentProfileRepository(context: Context) : StudentProfileRepository {
     private val preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
 
