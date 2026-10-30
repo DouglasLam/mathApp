@@ -28,7 +28,7 @@ The foundation milestone currently keeps its small home-screen prototype in `Mai
 
 ## Planned milestones
 
-Each milestone or feature gets its own branch, a focused commit with an explanatory body, and a PR. Work pauses after the PR description is provided. Continue only after Douglas confirms the PR was merged.
+Each milestone or feature gets its own branch and focused commit(s) with explanatory commit messages.
 
 1. **Project foundation and home screen** - current branch; Compose project, theme, grade selector, operation cards, and resume placeholder.
 2. **Student profiles** - create/select local profiles with display name and avatar; profile-scoped state.
@@ -40,12 +40,11 @@ Each milestone or feature gets its own branch, a focused commit with an explanat
 ## Branch and PR workflow
 
 - Keep `main` as the integration branch.
-- Start each next milestone from the updated `main` using a new branch named `feature/<short-name>`.
-- Make a focused commit with a descriptive subject and a body that explains what changed and why.
-- Stop after the commit and provide a PR title, description, and review notes.
-- After PR merge confirmation, update local `main` from the hosted remote, then start the next branch.
-
-This repository currently has no remote configured. Add the remote URL after creating the hosted repository, then push the feature branch to open the PR.
+- Start each milestone or feature branch from the latest `main`, using `feature/<short-name>`.
+- Make focused commits with descriptive subjects and bodies explaining the changes.
+- When the feature is ready, create a pull request from its feature branch to `main`, then pause for Douglas to review and approve it.
+- After approval, merge the PR, delete the merged feature branch on GitHub, update local `main` from `origin`, and create the next feature branch from that updated `main`.
+- Do not begin the next feature before the approved PR has been merged and branch cleanup is complete.
 
 ## Product assumptions currently represented in the plan
 
