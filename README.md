@@ -4,9 +4,9 @@ An Android math practice app for students in grades 3-9. The first release focus
 
 ## Current milestone
 
-**Milestone 1 - Project foundation and home screen** (`feature/project-foundation`)
+**Milestone 2 - Student profiles** (`feature/student-profiles`)
 
-This milestone establishes the Android/Compose build, app identity, initial home screen, and the branching/PR workflow. The home screen is a UI foundation: grade selection works locally, while profile management, navigation, practice, and persistence are planned for later milestones.
+This milestone adds local student profile creation and switching. Profiles have a display name and avatar, survive app restarts, and provide an active student identity for later profile-scoped practice progress.
 
 ## Open in Android Studio
 
@@ -18,20 +18,20 @@ The project uses Gradle 8.13, Android Gradle Plugin 8.13.2, Kotlin 2.3.0, Java 1
 
 ## Project organization
 
-The project will keep UI rendering, practice rules, and data access in separate layers as the features are added:
+The project separates UI rendering, product rules, and data access:
 
 - `ui/`: Compose screens and screen state presentation
-- `domain/`: grade rules, question generation, answer/retry behavior, streak calculations, and use cases
-- `data/`: repository interfaces and local Room implementations
+- `domain/`: profile validation and future question, retry, and streak rules
+- `data/`: repository interfaces and local storage implementations
 
-The foundation milestone currently keeps its small home-screen prototype in `MainActivity.kt`. Follow-on milestones should move screens into `ui/` and business rules into `domain/` before adding substantial behavior.
+Student profile rules are independent of Compose, and storage is behind a repository interface so behavior can be tested without coupling product rules to Android preferences.
 
 ## Planned milestones
 
 Each milestone or feature gets its own branch and focused commit(s) with explanatory commit messages.
 
-1. **Project foundation and home screen** - current branch; Compose project, theme, grade selector, operation cards, and resume placeholder.
-2. **Student profiles** - create/select local profiles with display name and avatar; profile-scoped state.
+1. **Project foundation and home screen** - complete; Android/Compose build, theme, grade selector, operation cards, and resume placeholder.
+2. **Student profiles** - current; create/select local profiles with display name and avatar; active profile is saved locally.
 3. **Practice engine** - grade/operation question rules, question UI, answer checking, three retries after the initial attempt, answer reveal, and explicit Next.
 4. **Local progress and save/resume** - persistence per profile, saved checkpoints, resume behavior, and progress display.
 5. **Streaks and finish polish** - current/best correct streak, accessibility, empty/error states, and final UI polish.
